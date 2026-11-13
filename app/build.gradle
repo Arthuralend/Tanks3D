@@ -1,0 +1,24 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'com.arthur.tanks3d'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.arthur.tanks3d'
+        minSdk 21
+        targetSdk 34
+        versionCode 1
+        versionName '1.0'
+    }
+    signingConfigs {
+        release {
+            storeFile file('tanks3d.jks')
+            storePassword 'tanks3d'
+            keyAlias 'tanks3d'
+            keyPassword 'tanks3d'
+        }
+    }
+    buildTypes {
+        release { minifyEnabled false; signingConfig signingConfigs.release }
+    }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
+}
