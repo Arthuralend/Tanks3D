@@ -21,11 +21,11 @@ jobs:
       - name: Build
         run: gradle assembleRelease --no-daemon --stacktrace
       - name: Rename
-        run: cp app/build/outputs/apk/release/app-release.apk Tanks3D-TV.apk
+        run: cp app/build/outputs/apk/release/app-release.apk Tanks3D.apk
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest
-          name: Танки 3D для Android TV
-          files: Tanks3D-TV.apk
+          name: Tanks3D для Android TV
+          files: Tanks3D.apk
           make_latest: true

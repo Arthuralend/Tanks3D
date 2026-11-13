@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Танки 3D</title>
+<title>Танчики 3D</title>
 <style>
 @font-face{font-family:'Russo One';font-weight:400;font-display:block;src:url(fonts/russo-one-cyrillic-400-normal.woff2) format('woff2')}
 @font-face{font-family:'Russo One';font-weight:400;font-display:block;src:url(fonts/russo-one-latin-400-normal.woff2) format('woff2')}
@@ -138,7 +138,7 @@ body.tv .card{max-width:760px}
 </div>
 
 <aside id="hud">
-  <div class="brand">ТАНКИ 3D<small>ЗАЩИТИ ШТАБ</small></div>
+  <div class="brand"><span id="brandName">ТАНЧИКИ 3D</span><small>ЗАЩИТИ ШТАБ</small></div>
   <div class="stat"><span class="lbl">Уровень</span><span class="val" id="hLevel">1</span></div>
   <div>
     <div class="lbl2">Враги</div>
@@ -317,6 +317,9 @@ const dummy=new THREE.Object3D();
 const tmpC=new THREE.Color();
 const rnd=(a,b)=>a+Math.random()*(b-a);
 const $=id=>document.getElementById(id);
+const RU_UI=(navigator.language||'ru').toLowerCase().startsWith('ru');
+const GAME_NAME=RU_UI?'ТАНЧИКИ 3D':'TANKS3D';
+$('brandName').textContent=GAME_NAME;document.title=RU_UI?'Танчики 3D':'Tanks3D';
 const isTouch=false;document.body.classList.add('tv');
 if(isTouch) document.body.classList.add('touch');
 
@@ -1175,7 +1178,7 @@ function hideOverlay(){overlay.classList.remove('show');overlayPrimary=null;}
 function showMenu(){
   G.state='menu';
   const bon=BONUS_TYPES.map(t=>`<span><i style="background:#${BONUS_INFO[t].color.toString(16).padStart(6,'0')}"></i><b style="color:#e9eef3;font-weight:600">${BONUS_INFO[t].name}</b> — ${BONUS_INFO[t].text}</span>`).join('');
-  showOverlay(`<h1>ТАНКИ 3D</h1>
+  showOverlay(`<h1>${GAME_NAME}</h1>
   <p>Защитите штаб с флагом и уничтожьте все вражеские танки уровня. Кирпич разрушается, сталь пробивает только танк с тремя звёздами, в лесу танки прячутся. Мигающие красным враги оставляют бонус, а каждая звезда превращает ваш танк в более мощную модель.</p>
   <!--actions-->
   <div class="pads" id="padStatus">${padSummary()}</div>
